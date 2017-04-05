@@ -1,3 +1,4 @@
+require 'pry'
 class System
   attr_reader :bodies, :mass
 
@@ -6,7 +7,6 @@ class System
   end
 
   def add(body)
-    body = System.new
     @bodies << body
   end
 
@@ -17,6 +17,9 @@ class System
     end
     sum
   end
+
+
+
 end
 
 class Body < System
@@ -33,7 +36,7 @@ class Planet < Body
   attr_reader :day, :year, :name, :mass
 
   def initialize(name, mass, day, year)
-    self(name, mass)
+    super(name, mass)
     @day = day #number of hours it takes for the planet to rotate all the way around once
     @year = year #which is the number of days it takes for the planet to orbit the sun once
   end
@@ -43,7 +46,7 @@ class Star < Body
   attr_reader :type, :name, :mass
 
   def initialize(name, mass, type)
-    self(name, mass)
+    super(name, mass)
     @type = type
   end
 
@@ -53,7 +56,7 @@ class Moon < Body
   attr_reader :month, :planet, :name, :mass
 
   def initialize(name, mass, month, planet)
-    self(name, mass)
+    super(name, mass)
     @month = month
     @planet = planet
   end
